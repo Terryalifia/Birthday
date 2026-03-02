@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    overflow: hidden;
+}
+
+.container {
+    max-width: 700px;
+    padding: 20px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+button {
+    padding: 10px 25px;
+    margin-top: 30px;
+    border: 1px solid white;
+    border-radius: 30px;
+    font-size: 15px;
+    cursor: pointer;
+    background: transparent;
+    color: white;
+    transition: 0.4s;
+}
+
+button:hover {
+    background: white;
+    color: #0f2027;
+}
+
+input {
+    padding: 10px;
+    width: 80%;
+    border-radius: 10px;
+    border: none;
+    margin-top: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- FOTO AWAL -->
+    <img id="fotoAwal" src="ini.jpeg"
+    style="width:200px; height:200px; object-fit:cover; border-radius:15px; margin-bottom:20px; box-shadow:0 0 20px rgba(255,255,255,0.3);">
+
+    <h1 id="title">🎉 Happy Birthday 🎂</h1>
+    <p id="text">ABDUR ROHMAN ROBBANI ANSHORULLOH</p>
+
+    <!-- FOTO PUTRI (HANYA UNTUK SLIDE TERAKHIR) -->
+    <img id="fotoPutri" src="putri.jpeg"
+    style="width:180px; height:180px; object-fit:cover; border-radius:50%; margin-top:20px; box-shadow:0 0 30px rgba(255,255,255,0.4);"
+    class="hidden">
+
+    <input type="text" id="wishInput" class="hidden" placeholder="Tulis harapanmu di sini...">
+    <br>
+    <button id="nextBtn" onclick="nextPage()">Next ➡</button>
+    <button id="closeBtn" class="hidden" onclick="closePage()">Close ✨</button>
+
+</div>
+
+<script>
+let page = 1;
+
+function nextPage() {
+    const text = document.getElementById("text");
+    const title = document.getElementById("title");
+    const wishInput = document.getElementById("wishInput");
+    const nextBtn = document.getElementById("nextBtn");
+    const closeBtn = document.getElementById("closeBtn");
+    const fotoAwal = document.getElementById("fotoAwal");
+    const fotoPutri = document.getElementById("fotoPutri");
+
+    page++;
+
+    if (page === 2) {
+        text.innerHTML = "Semoga semesta selalu memberimu kemudahan atas segala usahamu,<br><br>\
+        Semoga langkahmu selalu diringankan,<br>\
+        Semoga pundakmu dikuatkan,<br>\
+        Semoga segala urusanmu dipermudah,<br>\
+        Semoga hatimu dilapangkan atas segala takdir yang diluar rencanamu,<br>\
+        dan Semoga kamu selalu dikelilingi orang-orang baik dimanapun kamu berada ";
+    }
+
+    else if (page === 3) {
+        text.innerHTML = "Aku akan selalu bangga atas setiap proses yang sudah kamu lalui.<br><br>\
+        Selamat berkelana,<br>\
+        I will always support u from afar ";
+    }
+
+    else if (page === 4) {
+        text.innerHTML = "Sehat sehat ya mas 🤍";
+    }
+
+    else if (page === 5) {
+        title.innerHTML = "✨ Make a Wish ✨";
+        text.innerHTML = "Tutup mata sebentar... lalu tulis harapan kamu.";
+        wishInput.classList.remove("hidden");
+    }
+
+    else if (page === 6) {
+        let wish = wishInput.value;
+
+        if (wish.trim() === "") {
+            alert("Isi dulu wish kamu ✨");
+            page--;
+            return;
+        }
+
+        title.innerHTML = "💫 Your Wish 💫";
+        text.innerHTML = "Kamu berharap:<br><br><b>\"" + wish + "\"</b><br><br>\
+        Aamiin. Semoga semua doamu dikabulkan di waktu terbaik, dan kembali padamu dalam bentuk yang paling baik<br><br>\
+        Klik Next sekali lagi ya ";
+        wishInput.classList.add("hidden");
+    }
+
+    else if (page === 7) {
+        title.innerHTML = "Dari : ";
+        text.innerHTML = "Tuan Putri Cantik ";
+
+        fotoAwal.style.display = "none";        // sembunyikan foto awal
+        fotoPutri.classList.remove("hidden");   // tampilkan foto putri
+
+        nextBtn.classList.add("hidden");
+        closeBtn.classList.remove("hidden");
+    }
+}
+
+function closePage() {
+    document.body.innerHTML = "<h1 style='color:white;'>Terima kasih sudah meluangkan waktu :)</h1>";
+}
+</script>
+
+</body>
+</html>
